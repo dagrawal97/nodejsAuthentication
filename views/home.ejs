@@ -1,1 +1,8 @@
-<div>Welcome homepage</div>
+<div>
+    <%if(locals.user){%>
+    <h1>Welcome, <%= user.name%> !!!</h1>
+    <%}else{%>
+    <h1>SignIn Or Sign Up</h1>
+    <%}%>
+  </div>
+  

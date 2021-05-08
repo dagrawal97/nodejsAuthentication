@@ -3,14 +3,19 @@ const app = express();
 const port = 8000;
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
-
+const cookieParser = require("cookie-parser");
 //used for session cookie
 const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
+const passportGoogle = require("./config/passport-google-oauth2-strategy");
 const MongoStore = require("connect-mongo")(session);
 
+const flash = require("connect-flash");
+const customMware = require("./config/middleware");
+
 app.use(express.urlencoded());
+app.use(cookieParser());
 app.use(expressLayouts);
 
 app.set("layout extractStyles", true);
@@ -23,7 +28,7 @@ app.set("views", "./views");
 // mongo store is used to store the session cookie in the db
 app.use(
   session({
-    name: "codeial",
+    name: "authsystem",
     //TODO change the secret before deployment in production mode
     secret: "authsystem",
     saveUninitialized: false,
@@ -47,7 +52,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
 
+app.use(customMware.setFlash);
 //use express router
 app.use("/", require("./routes"));
 

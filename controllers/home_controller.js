@@ -1,9 +1,9 @@
 //exporting the home controller
 
 module.exports.home = function (req, res) {
-  console.log('cokkie', req.cookies);
-  console.log("home controller k andar");
-  console.log("mera bhai",(res.locals));
+  // console.log('cokkie', req.cookies);
+  // console.log("home controller k andar");
+  // console.log("mera bhai",(res.locals));
   
   try {
     return res.render("home", {

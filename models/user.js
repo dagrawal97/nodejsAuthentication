@@ -18,15 +18,15 @@ const userSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-    //   passwordToken: {
-    //     type: String,
-    //   },
-    //   tokenExpiry: {
-    //     type: Date,
-    //   },
-    //   isVerified: {
-    //     type: Boolean,
-    //   },
+      passwordToken: {
+        type: String,
+      },
+      tokenExpiry: {
+        type: Date,
+      },
+      isVerified: {
+        type: Boolean,
+      },
     },
     {
       timestamps: true,
